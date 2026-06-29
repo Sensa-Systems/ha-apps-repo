@@ -1,0 +1,46 @@
+#include <tunables/global>
+
+profile sensa_app flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+
+  # Allow network access
+  network,
+
+  # Allow read access to the system
+  /dev/tty rw,
+  /proc/** r,
+  /sys/** r,
+
+  # Allow access to HA config and share
+  /config/** rwk,
+  /share/** rwk,
+
+  # Allow running the application
+  /run.sh rix,
+  /usr/** r,
+  /opt/** rix,
+  /bin/** rix,
+  /usr/bin/** rix,
+  /usr/local/** rix,
+
+  # Allow tmp and run
+  /tmp/** rwk,
+  /run/** rwk,
+  /var/** rwk,
+
+  # Allow s6-overlay
+  /init rix,
+  /package/** rix,
+  /command/** rix,
+  /etc/s6-overlay/** r,
+  /etc/services.d/** rwix,
+
+  # Python
+  /usr/lib/python*/** r,
+  /usr/local/lib/python*/** r,
+
+  # DNS resolution
+  /etc/resolv.conf r,
+  /etc/hosts r,
+  /etc/nsswitch.conf r,
+}

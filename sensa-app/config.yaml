@@ -1,0 +1,70 @@
+name: Sensa Control
+version: "1.0.0"
+
+slug: sensa_app
+description: "Sensa Systems, advanced RV & marine control systems, engineered for the future."
+url: "https://docs.sensa.systems"
+arch:
+  - aarch64
+  - amd64
+startup: application
+boot: auto
+init: false
+# NB: do NOT set `host_network: true`. In host-network mode the add-on leaves
+# the hassio bridge, so the integration can no longer reach it at its
+# `<hash>-sensa-app:8099` bridge hostname — every coordinator fetch + backup
+# POST then fails with "Failed to POST to Sensa backend" and the picker shows
+# all devices as un-added (looks like data loss, but /data is intact). It ships
+# to every BYO/appliance customer on the next update, so it must stay off.
+# Discovery does NOT need it: ESPHome probes are outbound HTTP (work through
+# bridge NAT), DHCP comes from Supervisor, and mDNS/zeroconf/Bluetooth are
+# handled by HA Core.
+homeassistant_api: true
+hassio_api: true
+# `manager` role. Two reasons:
+#  * Backups: the default role can LIST backups (so the status card reads
+#    fine) but cannot CREATE/restore them — without a backup-capable role,
+#    Backup Now returned 403 instantly and the card flashed "Backup complete."
+#    for a backup that never ran.
+#  * Settings -> Support "Usage by app": /api/v1/system/processes reads
+#    /core/stats, /supervisor/stats, the /addons listing and /addons/{slug}/stats.
+#    Those are NOT /info paths, so the default/backup roles reject them (403) ->
+#    the per-app list came back empty and the card hid the panel, while the
+#    Resources section still showed (disk reads /host/info, allowed by the
+#    default role). `manager` grants the stats + /addons endpoints and is a
+#    superset of `backup`, so backups keep working.
+hassio_role: manager
+map:
+  - config:rw
+  - share:rw
+# Read the MQTT broker host/credentials (via `bashio::services mqtt`) so the
+# cont-init seed can write Zigbee2MQTT's configuration.yaml with a working MQTT
+# block — which is what skips Z2M's first-run onboarding wizard for the
+# customer. `want` (not `need`) so the add-on still starts when no MQTT broker
+# is configured (the seed just skips, logged).
+services:
+  - mqtt:want
+options:
+  licence_api_url: "https://func-sensa-licensing-prod.azurewebsites.net/v1"
+  licence_public_key: ""
+  licence_data_path: "/data"
+  # Install flavour (byo | appliance). Default byo; the master-image build
+  # (tools/master-image/build-appliance.py) POSTs install_mode=appliance to
+  # the add-on's /options, which Supervisor REJECTS (400) unless the option is
+  # declared in this schema — so appliance lockdown depends on it being here.
+  install_mode: "byo"
+schema:
+  licence_api_url: str
+  licence_public_key: str
+  licence_data_path: str
+  install_mode: "list(byo|appliance)"
+ports:
+  8099/tcp: 8099
+ports_description:
+  8099/tcp: "Sensa Control API"
+image: "ghcr.io/sensa-systems/sensa-app-{arch}"
+ingress: true
+ingress_port: 8099
+panel_icon: "mdi:hub"
+panel_title: "Sensa Control"
+apparmor: false

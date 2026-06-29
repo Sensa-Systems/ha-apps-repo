@@ -1,0 +1,4 @@
+configuration:
+  license_key:
+    name: License Key
+    description: Enter your Sensa license key
