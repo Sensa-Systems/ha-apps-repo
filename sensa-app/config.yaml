@@ -46,18 +46,33 @@ services:
   - mqtt:want
 options:
   licence_api_url: "https://func-sensa-licensing-prod.azurewebsites.net/v1"
-  licence_public_key: ""
+  # Sensa Radar ORIGIN for this channel, substituted from the sensaRadarUrl
+  # variable group by assemble-distribution.sh. Must be the origin serving the
+  # Radar WEB APP: callers append their own path (/api/v1/... for the API, which
+  # the web app proxies through to the backend; /?embed=1 for the nav-map
+  # iframe). Empty => Radar lookups stay off.
+  radar_url: "https://radar.sensa.systems"
+  # The licence-signing PUBLIC KEY for THIS channel's environment, injected by
+  # assemble-distribution.sh (fetched from https://func-sensa-licensing-prod.azurewebsites.net/v1/public-key). Each
+  # environment (dev/test/prod) has its own Key Vault signing key, so the shipped
+  # key MUST match the LICENCE_API_URL above or every redeem fails bad_cloud_jwt.
+  # The @@ token is replaced AFTER the sed pass (in Python) so the multi-line PEM
+  # is escaped exactly; blank on edge if the fetch failed (App falls back to the
+  # baked dev key, which matches dev).
+  licence_public_key: "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEBJaUP64bURzanpd+YnUwRs0y6xCH\nzGpsft23+X7Ds0y3gVEIeXtGtA9PqXzIm/xocEimP5i7oTIa8SjlZ12Neg==\n-----END PUBLIC KEY-----"
   licence_data_path: "/data"
-  # Install flavour (byo | appliance). Default byo; the master-image build
-  # (tools/master-image/build-appliance.py) POSTs install_mode=appliance to
-  # the add-on's /options, which Supervisor REJECTS (400) unless the option is
+  # Deployment mode = how this box was installed: byo (self-install) / enthusiast
+  # (HAOS appliance) / appliance (Container appliance). Default byo; the
+  # master-image build (tools/images/build-appliance.py) POSTs the appliance
+  # value to the add-on's /options, which Supervisor REJECTS (400) unless it is
   # declared in this schema — so appliance lockdown depends on it being here.
-  install_mode: "byo"
+  deployment_mode: "byo"
 schema:
   licence_api_url: str
+  radar_url: "str?"
   licence_public_key: str
   licence_data_path: str
-  install_mode: "list(byo|appliance)"
+  deployment_mode: "list(byo|enthusiast|appliance)"
 ports:
   8099/tcp: 8099
 ports_description:
