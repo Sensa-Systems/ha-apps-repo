@@ -77,7 +77,7 @@ ports:
   8099/tcp: 8099
 ports_description:
   8099/tcp: "Sensa Control API"
-image: "ghcr.io/sensa-systems/sensa-app-{arch}"
+image: "ghcr.io/sensa-systems/sensa-control-{arch}"
 ingress: true
 ingress_port: 8099
 panel_icon: "mdi:hub"
