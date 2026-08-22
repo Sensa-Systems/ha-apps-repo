@@ -1,4 +1,4 @@
-# Release 1.0.1
+# Release 1.0.2
 
 The first full Sensa Nomad release. Plug it in, let it find your vehicle's
 devices, and it builds your dashboards and controls for you. Everything runs
