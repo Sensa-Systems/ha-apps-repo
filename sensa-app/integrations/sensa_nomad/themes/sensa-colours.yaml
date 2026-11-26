@@ -1,0 +1,321 @@
+# Sensa Colours — Home Assistant theme bundled with Sensa Nomad.
+#
+# Palette mirrors the Sensa website (sensa.systems): deep navy
+# backgrounds with blue/violet/pink brand accents so customers get
+# a consistent look from the marketing site through to their Nomad
+# dashboards. Source of truth for colour values is
+# Website/Sensa.Website/hugo/themes/sensa/assets/css/main.css.
+#
+# Architecture rule: this theme MAY define internal `--sensa-*`
+# brand-palette vars for its own use, but every Sensa-generated
+# dashboard and webcard MUST reference HA-standard theme variables
+# (--primary-color, --accent-color, --warning-color, --error-color,
+# --success-color, --info-color, --card-background-color, etc.).
+# That way any HA theme — Sensa Colours or anything off HACS —
+# styles the dashboards correctly without code changes.
+
+Sensa Colours:
+  # ---- Brand palette (internal — only used inside this theme) ------
+  sensa-bg:           "#07111e"
+  sensa-bg-2:         "#0b1830"
+  sensa-bg-3:         "#0f2240"
+  sensa-panel:        "#0a1426"
+  sensa-line:         "rgba(197, 206, 217, 0.16)"
+  sensa-text:         "#f6f8fb"
+  sensa-muted:        "#b9c4d0"
+  sensa-silver:       "#dfe5eb"
+  sensa-silver-2:     "#aeb8c2"
+  sensa-blue:         "#2f7cf6"
+  sensa-violet:       "#9a52ff"   # reserved: means Radar, nothing else
+  sensa-pink:         "#f14cc8"   # LOGO ARTWORK ONLY. Not a state, not an accent.
+  sensa-amber:        "#f9a01e"   # caution, and lights-on
+  sensa-heat:         "#ff7a45"   # climate heating (distinct from amber lights)
+  sensa-fault:        "#e5484d"   # something is wrong
+  sensa-success:      "#3ecf8e"
+
+  # ---- Glass-effect surfaces (internal) ----------------------------
+  # Glassmorphism without card-mod: translucent navy fill + a faint
+  # linear-gradient on `ha-card-background` for the shimmer, paired
+  # with an inner-top highlight in the box-shadow to suggest a beveled
+  # pane edge. Real backdrop-filter blur isn't reachable via theme YAML
+  # alone — it needs CSS, which would mean card-mod (deliberately not
+  # a dependency, see project standards). The translucent + gradient +
+  # inner-highlight combination reads as "glass" against the dark body
+  # and behaves identically across every Lovelace card type.
+  sensa-glass-fill:           "rgba(15, 28, 55, 0.55)"
+  sensa-glass-fill-deep:      "rgba(11, 22, 44, 0.72)"
+  sensa-glass-gradient:       "linear-gradient(135deg, rgba(20, 40, 80, 0.55) 0%, rgba(10, 22, 44, 0.45) 100%)"
+  sensa-glass-border:         "rgba(255, 255, 255, 0.08)"
+  sensa-glass-inner:          "inset 0 1px 0 rgba(255, 255, 255, 0.10)"
+  sensa-glass-shadow:         "0 16px 40px rgba(0, 0, 0, 0.45)"
+
+  # ---- Primary identity --------------------------------------------
+  primary-color:          "var(--sensa-blue)"
+  accent-color:           "var(--sensa-blue)"      # action = blue; violet means Radar
+  dark-primary-color:     "var(--sensa-bg-3)"
+  light-primary-color:    "var(--sensa-blue)"
+
+  # ---- Surfaces -----------------------------------------------------
+  # Cards use the glass gradient on `ha-card-background` (HA's ha-card
+  # element accepts gradients here because it consumes via `background:`
+  # shorthand). `card-background-color` is kept as a translucent solid
+  # for legacy components that consume it via `background-color:` —
+  # those don't accept gradients but still get the see-through effect.
+  primary-background-color:        "var(--sensa-bg)"
+  secondary-background-color:      "var(--sensa-bg-2)"
+  card-background-color:           "var(--sensa-glass-fill)"
+  ha-card-background:              "var(--sensa-glass-gradient)"
+  paper-card-background-color:     "var(--sensa-glass-fill)"
+  paper-listbox-background-color:  "var(--sensa-glass-fill-deep)"
+  paper-dialog-background-color:   "var(--sensa-glass-fill-deep)"
+  paper-tooltip-background-color:  "var(--sensa-bg-3)"
+  scrollbar-thumb-color:           "var(--sensa-bg-3)"
+
+  # ---- Card chrome --------------------------------------------------
+  # Brighter top-edge border (`sensa-glass-border`) + an inset highlight
+  # at the top of every card give the beveled pane look. The outer drop
+  # shadow lifts the card off the page so the translucency reads as
+  # depth rather than just lighter-tinted opacity.
+  ha-card-border-radius:  "12px"
+  ha-card-border-color:   "var(--sensa-glass-border)"
+  ha-card-border-width:   "1px"
+  ha-card-box-shadow:     "var(--sensa-glass-inner), var(--sensa-glass-shadow)"
+
+  # ---- Text ---------------------------------------------------------
+  primary-text-color:     "var(--sensa-text)"
+  secondary-text-color:   "var(--sensa-muted)"
+  # The label painted ON a filled accent (sa-primary, sa-danger, the
+  # selection bar). NOT the body ink: that is `primary-text-color`, one
+  # letter-order away and the opposite colour. A dark theme's accents are
+  # LIGHT, so the label on them is dark, not the theme's own light text.
+  text-primary-color:     "#000000"
+  disabled-text-color:    "var(--sensa-silver-2)"
+  text-light-color:       "var(--sensa-text)"
+  text-dark-color:        "#0f1b2a"
+
+  # ---- Dividers / borders ------------------------------------------
+  divider-color:  "var(--sensa-line)"
+  outline-color:  "var(--sensa-line)"
+
+  # ---- App header ---------------------------------------------------
+  app-header-background-color:       "var(--sensa-bg-2)"
+  app-header-text-color:             "var(--sensa-text)"
+  app-header-edit-background-color:  "var(--sensa-bg-2)"
+  app-header-selection-bar-color:    "var(--sensa-blue)"
+
+  # ---- Sidebar ------------------------------------------------------
+  sidebar-background-color:           "var(--sensa-bg-2)"
+  sidebar-text-color:                 "var(--sensa-muted)"
+  sidebar-icon-color:                 "var(--sensa-muted)"
+  sidebar-selected-text-color:        "var(--sensa-text)"
+  sidebar-selected-icon-color:        "var(--sensa-blue)"
+  sidebar-selected-background-color:  "var(--sensa-bg-3)"
+
+  # ---- State icons --------------------------------------------------
+  paper-item-icon-color:         "var(--sensa-muted)"
+  paper-item-icon-active-color:  "var(--sensa-blue)"
+  state-icon-color:              "var(--sensa-muted)"
+  state-icon-active-color:       "var(--sensa-blue)"
+
+  # ---- Domain state colours ----------------------------------------
+  state-active-color:                "var(--sensa-blue)"
+  state-inactive-color:              "var(--sensa-silver-2)"
+  state-binary_sensor-active-color:  "var(--sensa-blue)"
+  state-light-active-color:          "var(--sensa-amber)"
+  state-switch-active-color:         "var(--sensa-blue)"
+  state-climate-heat-color:          "var(--sensa-heat)"
+  state-climate-cool-color:          "var(--sensa-blue)"
+
+  # ---- Switch / toggle ---------------------------------------------
+  switch-checked-color:           "var(--sensa-blue)"
+  switch-checked-button-color:    "var(--sensa-blue)"
+  switch-checked-track-color:     "var(--sensa-blue)"
+  switch-unchecked-button-color:  "var(--sensa-silver-2)"
+  switch-unchecked-track-color:   "var(--sensa-bg-3)"
+
+  # ---- Slider -------------------------------------------------------
+  paper-slider-knob-color:         "var(--sensa-blue)"
+  paper-slider-knob-start-color:   "var(--sensa-blue)"
+  paper-slider-pin-color:          "var(--sensa-blue)"
+  paper-slider-active-color:       "var(--sensa-blue)"
+  paper-slider-secondary-color:    "color-mix(in srgb, var(--sensa-blue) 40%, transparent)"
+  paper-slider-container-color:    "var(--sensa-bg-3)"
+
+  # ---- Legacy paper-input vars (older form widgets) ----------------
+  input-background-color:    "var(--sensa-bg-3)"
+  input-fill-color:          "var(--sensa-bg-3)"
+  input-ink-color:           "var(--sensa-text)"
+  input-label-ink-color:     "var(--sensa-muted)"
+  input-idle-line-color:     "var(--sensa-line)"
+  input-hover-line-color:    "var(--sensa-blue)"
+  input-disabled-ink-color:  "var(--sensa-silver-2)"
+
+  # ---- HA design tokens (THIS is what modern HA actually reads) ----
+  # Current HA frontend (config flow, profile prefs, dialogs, helpers)
+  # uses webawesome `wa-input` / `wa-select` components styled via the
+  # `--ha-color-*` design-token system, NOT the legacy MDC vars below.
+  # The wa-input mixin reads `--ha-color-form-background` directly for
+  # input fill — without this override, HA's default light theme value
+  # (`--ha-color-neutral-95` ≈ #f3f3f3) wins and inputs render as
+  # near-white boxes regardless of how dark `--card-background-color`
+  # or the MDC vars are. HA's own dark theme overrides these in a
+  # separate `darkSemanticColorStyles` block; custom dark theme YAMLs
+  # have to override them explicitly.
+  # Reference: home-assistant/frontend src/resources/theme/color/semantic.globals.ts
+
+  # Forms — input field fills (text, password, number, select)
+  ha-color-form-background:           "var(--sensa-bg-3)"
+  ha-color-form-background-hover:     "var(--sensa-bg-2)"
+  ha-color-form-background-disabled:  "var(--sensa-bg-2)"
+
+  # Text on the default surface
+  ha-color-text-primary:    "var(--sensa-text)"
+  ha-color-text-secondary:  "var(--sensa-muted)"
+  ha-color-text-disabled:   "var(--sensa-silver-2)"
+  ha-color-text-link:       "var(--sensa-blue)"
+
+  # Page surfaces (cards, dialogs, sidebar variants). Modern HA components
+  # (wa-input, wa-select, dialogs) read these directly. Use the glass fill
+  # for the default surface so config flow popups inherit the same look as
+  # the dashboard cards.
+  ha-color-surface-default:     "var(--sensa-glass-fill)"
+  ha-color-surface-low:         "var(--sensa-bg-2)"
+  ha-color-surface-lower:       "var(--sensa-bg)"
+  ha-color-on-surface-default:  "var(--sensa-text)"
+
+  # Neutral borders
+  ha-color-border-neutral-quiet:   "var(--sensa-line)"
+  ha-color-border-neutral-normal:  "rgba(197, 206, 217, 0.24)"
+  ha-color-border-neutral-loud:    "rgba(197, 206, 217, 0.40)"
+
+  # Status fills (alerts, validation states, badges)
+  ha-color-fill-danger-loud-resting:   "var(--sensa-fault)"
+  ha-color-fill-warning-loud-resting:  "var(--sensa-amber)"
+  ha-color-fill-success-loud-resting:  "var(--sensa-success)"
+  ha-color-on-danger-quiet:            "var(--sensa-fault)"
+  ha-color-on-warning-quiet:           "var(--sensa-amber)"
+  ha-color-on-success-quiet:           "var(--sensa-success)"
+
+  # Neutral fills — dropdown item hover, chips, neutral buttons.
+  # wa-dropdown-item:hover reads --wa-color-neutral-fill-normal which
+  # bridges to --ha-color-fill-neutral-normal-resting in wa.globals.ts.
+  # HA's light default is --ha-color-neutral-90 (#e6e6e6, near-white)
+  # — invisible against our white text on hovered dropdown items.
+  # rgba-over-surface keeps these working on any dark surface.
+  ha-color-fill-neutral-quiet-resting:   "rgba(255, 255, 255, 0.04)"
+  ha-color-fill-neutral-quiet-hover:     "rgba(255, 255, 255, 0.08)"
+  ha-color-fill-neutral-quiet-active:    "rgba(255, 255, 255, 0.04)"
+  ha-color-fill-neutral-normal-resting:  "rgba(255, 255, 255, 0.08)"
+  ha-color-fill-neutral-normal-hover:    "rgba(255, 255, 255, 0.12)"
+  ha-color-fill-neutral-normal-active:   "rgba(255, 255, 255, 0.08)"
+  ha-color-fill-neutral-loud-resting:    "rgba(255, 255, 255, 0.20)"
+  ha-color-fill-neutral-loud-hover:      "rgba(255, 255, 255, 0.28)"
+  ha-color-fill-neutral-loud-active:     "rgba(255, 255, 255, 0.20)"
+
+  # Primary fills — selected dropdown item, primary-tinted buttons.
+  # ha-dropdown-item[selected] reads --ha-color-fill-primary-quiet-
+  # resting directly. Faint brand-blue tint over the dark surface so
+  # the current selection is visually distinct without overpowering.
+  ha-color-fill-primary-quiet-resting:   "rgba(47, 124, 246, 0.12)"
+  ha-color-fill-primary-quiet-hover:     "rgba(47, 124, 246, 0.20)"
+  ha-color-fill-primary-quiet-active:    "rgba(47, 124, 246, 0.12)"
+  ha-color-fill-primary-normal-resting:  "rgba(47, 124, 246, 0.24)"
+  ha-color-fill-primary-normal-hover:    "rgba(47, 124, 246, 0.32)"
+  ha-color-fill-primary-normal-active:   "rgba(47, 124, 246, 0.24)"
+
+  # Text colours on those fills
+  ha-color-on-neutral-quiet:   "var(--sensa-muted)"
+  ha-color-on-neutral-normal:  "var(--sensa-text)"
+  ha-color-on-neutral-loud:    "var(--sensa-text)"
+  ha-color-on-primary-quiet:   "var(--sensa-blue)"
+  ha-color-on-primary-normal:  "var(--sensa-blue)"
+  ha-color-on-primary-loud:    "var(--sensa-text)"
+
+  # Modal / dialog body — `ha-dialog-surface-background` is set in the
+  # MDC dialog block below (line ~243) to keep all dialog/scrim values
+  # together. Don't redeclare here — duplicate keys raise warnings on
+  # every HA reload.
+
+  # ---- Legacy MDC text fields (older HA widgets, kept for compat) --
+  mdc-text-field-fill-color:                      "var(--sensa-bg-3)"
+  mdc-text-field-disabled-fill-color:             "var(--sensa-bg-2)"
+  mdc-text-field-ink-color:                       "var(--sensa-text)"
+  mdc-text-field-label-ink-color:                 "var(--sensa-muted)"
+  mdc-text-field-disabled-ink-color:              "var(--sensa-silver-2)"
+  mdc-text-field-disabled-line-color:             "var(--sensa-line)"
+  mdc-text-field-idle-line-color:                 "var(--sensa-line)"
+  mdc-text-field-hover-line-color:                "var(--sensa-blue)"
+  mdc-text-field-error-line-color:                "var(--sensa-fault)"
+  mdc-text-field-error-ink-color:                 "var(--sensa-fault)"
+  mdc-text-field-error-label-ink-color:           "var(--sensa-fault)"
+  mdc-text-field-outlined-idle-border-color:      "var(--sensa-line)"
+  mdc-text-field-outlined-hover-border-color:     "var(--sensa-blue)"
+  mdc-text-field-outlined-disabled-border-color:  "var(--sensa-line)"
+
+  # ---- MDC select / dropdowns --------------------------------------
+  mdc-select-fill-color:                       "var(--sensa-bg-3)"
+  mdc-select-disabled-fill-color:              "var(--sensa-bg-2)"
+  mdc-select-ink-color:                        "var(--sensa-text)"
+  mdc-select-label-ink-color:                  "var(--sensa-muted)"
+  mdc-select-disabled-ink-color:               "var(--sensa-silver-2)"
+  mdc-select-idle-line-color:                  "var(--sensa-line)"
+  mdc-select-hover-line-color:                 "var(--sensa-blue)"
+  mdc-select-dropdown-icon-color:              "var(--sensa-muted)"
+  mdc-select-outlined-idle-border-color:       "var(--sensa-line)"
+  mdc-select-outlined-hover-border-color:      "var(--sensa-blue)"
+  mdc-select-outlined-disabled-border-color:   "var(--sensa-line)"
+
+  # ---- MDC dialog + list (dropdown popups, modal headings) ---------
+  # Setting *-ink-color alone isn't enough — modern HA dialogs read
+  # --mdc-dialog-content-background-color (and --ha-dialog-surface-
+  # background on newer dialog wrappers) directly to fill the body.
+  # Without these, the dialog body falls to MDC's Material-light
+  # default (white), and outlined text fields render as a dark border
+  # over a white surface → white-text-on-white-box during config flow.
+  # Dialog body uses the deeper glass fill so text on busy backgrounds
+  # stays readable — modal popups need higher contrast than dashboard
+  # cards that float over a known dark body.
+  mdc-dialog-heading-ink-color:         "var(--sensa-text)"
+  mdc-dialog-content-ink-color:         "var(--sensa-text)"
+  mdc-dialog-content-background-color:  "var(--sensa-glass-fill-deep)"
+  mdc-dialog-scrim-color:               "rgba(0, 0, 0, 0.6)"
+  ha-dialog-surface-background:         "var(--sensa-glass-fill-deep)"
+  ha-dialog-scrim-background:           "rgba(0, 0, 0, 0.6)"
+  mdc-list-text-color:                  "var(--sensa-text)"
+
+  # ---- MDC menu surface (dropdown popups inside dialogs) -----------
+  mdc-menu-surface-fill-color:  "var(--sensa-bg-2)"
+
+  # ---- MDC text-on-background defaults ----------------------------
+  # Many MDC components compute their default text colour from these,
+  # not from the per-component *-ink-color vars above. Without them
+  # set to our light-on-dark palette, MDC falls back to Material's
+  # near-black-on-white assumptions even when our component vars say
+  # otherwise, which is how white-on-white sneaks back in for
+  # form fields HA renders without an explicit ha-textfield wrapper.
+  mdc-theme-text-primary-on-background:    "var(--sensa-text)"
+  mdc-theme-text-secondary-on-background:  "var(--sensa-muted)"
+  mdc-theme-text-disabled-on-background:   "var(--sensa-silver-2)"
+  mdc-theme-text-hint-on-background:       "var(--sensa-muted)"
+  mdc-theme-text-icon-on-background:       "var(--sensa-muted)"
+
+  # ---- Status -------------------------------------------------------
+  warning-color:  "var(--sensa-amber)"
+  # error-color drives the full-width alarm banner fill as well as error text
+  # and icons. It used to be brand pink darkened 60% because the raw pink was
+  # too bright over a large area, and read as branding rather than as an alarm.
+  # --sensa-fault is a real red, so it needs no taming and is used as-is.
+  error-color:    "var(--sensa-fault)"
+  success-color:  "var(--sensa-success)"
+  info-color:     "var(--sensa-blue)"
+
+  # ---- Material Design Components ----------------------------------
+  mdc-theme-primary:     "var(--sensa-blue)"
+  mdc-theme-secondary:   "var(--sensa-blue)"
+  mdc-theme-on-primary:  "var(--sensa-text)"
+  mdc-theme-surface:     "var(--sensa-panel)"
+  mdc-theme-on-surface:  "var(--sensa-text)"
+
+  # ---- Code blocks --------------------------------------------------
+  code-editor-background-color:    "var(--sensa-bg-2)"
+  markdown-code-background-color:  "var(--sensa-bg-3)"

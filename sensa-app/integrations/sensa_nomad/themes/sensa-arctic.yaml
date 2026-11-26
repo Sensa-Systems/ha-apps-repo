@@ -1,0 +1,295 @@
+# Sensa Arctic — Home Assistant theme bundled with Sensa Nomad.
+#
+# Cool white with an ice-blue accent: the light sibling of Sensa
+# Slate, and the brightest theme in the set. Surfaces are white
+# with a faint blue cast rather than a warm one, so it pairs
+# with a cool-white interior light.
+#
+#
+# Light-theme colour rule (the one thing that is NOT free to change when you
+# copy this file). It is about LIGHTNESS, not saturation. Sensa Colours' blue
+# is #2f7cf6: 92% saturated and 57% light. Over navy that is right. Over white
+# it glares, and at 3.94:1 it was the weakest thing in the palette despite
+# being the colour every control is tinted with. Desaturating it is the
+# tempting fix and it is the wrong one, because it comes back looking washed
+# out. Deepening it is the right one. So: keep the hue, allow up to 75%
+# saturation, and push the lightness down until the accent clears 4.6:1
+# against the page and a white label clears 6:1 on top of it. That last number
+# is what takes the glare off. None of this applies to the DARK themes in this
+# directory, where a light, saturated accent is correct.
+# Architecture rule: this theme MAY define internal `--sensa-ar-*`
+# palette vars for its own use, but every Sensa-generated dashboard
+# and webcard MUST reference HA-standard theme variables only
+# (--primary-color, --accent-color, --warning-color, --error-color,
+# --success-color, --info-color, --card-background-color, etc.).
+# Switching to this theme should style every Sensa surface without
+# any code changes.
+#
+# To add another theme, copy this file, rename the top-level key and
+# the internal palette block, and change only the palette values at
+# the top. Nothing below that block should need editing. The installer
+# (frontend.py's async_install_sensa_themes) and the picker
+# (theme_catalog.py's public_theme_names) both glob `sensa-*.yaml`,
+# so a new file needs no registration anywhere.
+
+Sensa Arctic:
+  # ---- Internal palette (only used inside this theme) ---------------
+  sensa-ar-page:        "#f2f6fa"   # body / page behind the cards
+  sensa-ar-page-2:      "#e6edf4"   # sidebar variants, secondary surfaces
+  sensa-ar-page-3:      "#d8e3ec"   # pressed / selected / track
+  sensa-ar-deep:        "#ffffff"   # the surface below the page
+  sensa-ar-card:        "#ffffff"   # cards, dialogs, menus
+  sensa-ar-field:       "#f7fafd"   # input fills
+  sensa-ar-line:        "rgba(16, 34, 46, 0.12)"
+  sensa-ar-line-loud:   "rgba(16, 34, 46, 0.24)"
+  sensa-ar-text:        "#10222e"
+  sensa-ar-muted:       "#55697a"
+  sensa-ar-faint:       "#93a5b4"
+  sensa-ar-primary:     "#136783"   # the accent: controls, links, active state
+  sensa-ar-primary-2:   "#125e7b"   # hover / pressed, and accent text
+  sensa-ar-amber:       "#91640c"   # lights-on
+  sensa-ar-warn:        "#91640c"   # caution
+  sensa-ar-heat:        "#bc4922"   # climate heating
+  sensa-ar-cool:        "#136783"   # climate cooling, and information
+  sensa-ar-fault:       "#b32d32"   # something is wrong
+  sensa-ar-success:     "#14795a"
+
+  # ---- Primary identity --------------------------------------------
+  primary-color:        "var(--sensa-ar-primary)"
+  accent-color:         "var(--sensa-ar-primary)"
+  dark-primary-color:   "var(--sensa-ar-primary-2)"
+  light-primary-color:  "var(--sensa-ar-page-3)"
+
+  # ---- Surfaces -----------------------------------------------------
+  primary-background-color:        "var(--sensa-ar-page)"
+  secondary-background-color:      "var(--sensa-ar-page-2)"
+  card-background-color:           "var(--sensa-ar-card)"
+  ha-card-background:              "var(--sensa-ar-card)"
+  paper-card-background-color:     "var(--sensa-ar-card)"
+  paper-listbox-background-color:  "var(--sensa-ar-card)"
+  paper-dialog-background-color:   "var(--sensa-ar-card)"
+  paper-tooltip-background-color:  "var(--sensa-ar-text)"
+  scrollbar-thumb-color:           "var(--sensa-ar-page-3)"
+
+  # ---- Card chrome --------------------------------------------------
+  ha-card-border-radius:   "12px"
+  ha-card-border-color:    "var(--sensa-ar-line)"
+  ha-card-border-width:    "1px"
+  ha-card-box-shadow:      "0 1px 2px rgba(16, 34, 46, 0.06), 0 6px 16px rgba(16, 34, 46, 0.05)"
+  ha-badge-border-radius:  "12px"
+
+  # ---- Text ---------------------------------------------------------
+  primary-text-color:     "var(--sensa-ar-text)"
+  secondary-text-color:   "var(--sensa-ar-muted)"
+  text-primary-color:     "#ffffff"
+  disabled-text-color:    "var(--sensa-ar-faint)"
+  # text-light-color is the text HA paints ON a primary-coloured fill
+  # (raised buttons, the selection bar); text-dark-color is the body
+  # ink. They are NOT "the light theme's" and "the dark theme's".
+  text-light-color:       "#ffffff"
+  text-dark-color:        "var(--sensa-ar-text)"
+
+  # ---- Dividers / borders ------------------------------------------
+  divider-color:  "var(--sensa-ar-line)"
+  outline-color:  "var(--sensa-ar-line)"
+
+  # ---- App header ---------------------------------------------------
+  app-header-background-color:       "var(--sensa-ar-card)"
+  app-header-text-color:             "var(--sensa-ar-text)"
+  app-header-edit-background-color:  "var(--sensa-ar-page-2)"
+  app-header-selection-bar-color:    "var(--sensa-ar-primary)"
+
+  # ---- Sidebar ------------------------------------------------------
+  sidebar-background-color:           "var(--sensa-ar-card)"
+  sidebar-text-color:                 "var(--sensa-ar-muted)"
+  sidebar-icon-color:                 "var(--sensa-ar-muted)"
+  sidebar-selected-text-color:        "var(--sensa-ar-primary-2)"
+  sidebar-selected-icon-color:        "var(--sensa-ar-primary)"
+  sidebar-selected-background-color:  "var(--sensa-ar-page-2)"
+
+  # ---- State icons --------------------------------------------------
+  paper-item-icon-color:         "var(--sensa-ar-muted)"
+  paper-item-icon-active-color:  "var(--sensa-ar-primary)"
+  state-icon-color:              "var(--sensa-ar-muted)"
+  state-icon-active-color:       "var(--sensa-ar-primary)"
+
+  # ---- Domain state colours ----------------------------------------
+  state-active-color:                "var(--sensa-ar-primary)"
+  state-inactive-color:              "var(--sensa-ar-faint)"
+  state-binary_sensor-active-color:  "var(--sensa-ar-primary)"
+  state-light-active-color:          "var(--sensa-ar-amber)"
+  state-switch-active-color:         "var(--sensa-ar-primary)"
+  state-climate-heat-color:          "var(--sensa-ar-heat)"
+  state-climate-cool-color:          "var(--sensa-ar-cool)"
+
+  # ---- Switch / toggle ---------------------------------------------
+  switch-checked-color:           "var(--sensa-ar-primary)"
+  switch-checked-button-color:    "var(--sensa-ar-primary)"
+  switch-checked-track-color:     "rgba(19, 103, 131, 0.45)"
+  switch-unchecked-button-color:  "#ffffff"
+  switch-unchecked-track-color:   "var(--sensa-ar-line-loud)"
+
+  # ---- Slider -------------------------------------------------------
+  paper-slider-knob-color:         "var(--sensa-ar-primary)"
+  paper-slider-knob-start-color:   "var(--sensa-ar-primary)"
+  paper-slider-pin-color:          "var(--sensa-ar-primary)"
+  paper-slider-active-color:       "var(--sensa-ar-primary)"
+  paper-slider-secondary-color:    "color-mix(in srgb, var(--sensa-ar-primary) 40%, transparent)"
+  paper-slider-container-color:    "var(--sensa-ar-page-3)"
+
+  # ---- Legacy paper-input vars (older form widgets) ----------------
+  input-background-color:    "var(--sensa-ar-field)"
+  input-fill-color:          "var(--sensa-ar-field)"
+  input-ink-color:           "var(--sensa-ar-text)"
+  input-label-ink-color:     "var(--sensa-ar-muted)"
+  input-idle-line-color:     "var(--sensa-ar-line)"
+  input-hover-line-color:    "var(--sensa-ar-primary)"
+  input-disabled-ink-color:  "var(--sensa-ar-faint)"
+
+  # ---- HA design tokens (THIS is what modern HA actually reads) ----
+  # Current HA frontend (config flow, profile prefs, dialogs, helpers)
+  # uses webawesome `wa-input` / `wa-select` components styled via the
+  # `--ha-color-*` design-token system, NOT the legacy MDC vars below.
+  # The wa-input mixin reads `--ha-color-form-background` directly, so
+  # without these overrides HA's stock light defaults win and inputs
+  # render as near-white boxes however dark the card background is.
+  # Reference: home-assistant/frontend src/resources/theme/color/semantic.globals.ts
+
+  # Forms — input field fills (text, password, number, select)
+  ha-color-form-background:           "var(--sensa-ar-field)"
+  ha-color-form-background-hover:     "var(--sensa-ar-page-3)"
+  ha-color-form-background-disabled:  "var(--sensa-ar-page-2)"
+
+  # Text on the default surface
+  ha-color-text-primary:    "var(--sensa-ar-text)"
+  ha-color-text-secondary:  "var(--sensa-ar-muted)"
+  ha-color-text-disabled:   "var(--sensa-ar-faint)"
+  ha-color-text-link:       "var(--sensa-ar-primary-2)"
+
+  # Page surfaces (cards, dialogs, sidebar variants). "lower" is the
+  # surface furthest from the reader, which on a dark theme is the
+  # darkest and on a light theme is the deepest tint.
+  ha-color-surface-default:     "var(--sensa-ar-card)"
+  ha-color-surface-low:         "var(--sensa-ar-page)"
+  ha-color-surface-lower:       "var(--sensa-ar-page-2)"
+  ha-color-on-surface-default:  "var(--sensa-ar-text)"
+
+  # Neutral borders
+  ha-color-border-neutral-quiet:   "var(--sensa-ar-line)"
+  ha-color-border-neutral-normal:  "var(--sensa-ar-line-loud)"
+  ha-color-border-neutral-loud:    "rgba(16, 34, 46, 0.40)"
+
+  # Status fills (alerts, validation states, badges)
+  ha-color-fill-danger-loud-resting:   "var(--sensa-ar-fault)"
+  ha-color-fill-warning-loud-resting:  "var(--sensa-ar-warn)"
+  ha-color-fill-success-loud-resting:  "var(--sensa-ar-success)"
+  ha-color-on-danger-quiet:            "var(--sensa-ar-fault)"
+  ha-color-on-warning-quiet:           "var(--sensa-ar-warn)"
+  ha-color-on-success-quiet:           "var(--sensa-ar-success)"
+
+  # Neutral fills — dropdown item hover, chips, neutral buttons.
+  # wa-dropdown-item:hover reads --wa-color-neutral-fill-normal which
+  # bridges to --ha-color-fill-neutral-normal-resting in wa.globals.ts.
+  # The alpha is dark over a light surface over the surface; copying the other
+  # direction's values in yields an invisible dropdown hover.
+  ha-color-fill-neutral-quiet-resting:   "rgba(16, 34, 46, 0.03)"
+  ha-color-fill-neutral-quiet-hover:     "rgba(16, 34, 46, 0.06)"
+  ha-color-fill-neutral-quiet-active:    "rgba(16, 34, 46, 0.03)"
+  ha-color-fill-neutral-normal-resting:  "rgba(16, 34, 46, 0.06)"
+  ha-color-fill-neutral-normal-hover:    "rgba(16, 34, 46, 0.10)"
+  ha-color-fill-neutral-normal-active:   "rgba(16, 34, 46, 0.06)"
+  ha-color-fill-neutral-loud-resting:    "rgba(16, 34, 46, 0.16)"
+  ha-color-fill-neutral-loud-hover:      "rgba(16, 34, 46, 0.22)"
+  ha-color-fill-neutral-loud-active:     "rgba(16, 34, 46, 0.16)"
+
+  # Primary fills — selected dropdown item, primary-tinted buttons.
+  # ha-dropdown-item[selected] reads --ha-color-fill-primary-quiet-
+  # resting directly. A faint accent wash, so the current selection
+  # reads without turning the row into a solid block of colour.
+  ha-color-fill-primary-quiet-resting:   "rgba(19, 103, 131, 0.08)"
+  ha-color-fill-primary-quiet-hover:     "rgba(19, 103, 131, 0.14)"
+  ha-color-fill-primary-quiet-active:    "rgba(19, 103, 131, 0.08)"
+  ha-color-fill-primary-normal-resting:  "rgba(19, 103, 131, 0.18)"
+  ha-color-fill-primary-normal-hover:    "rgba(19, 103, 131, 0.26)"
+  ha-color-fill-primary-normal-active:   "rgba(19, 103, 131, 0.18)"
+
+  # Text colours on those fills. The `-loud` fills are solid, so text
+  # on a loud primary fill is the on-accent ink, not the body ink.
+  ha-color-on-neutral-quiet:   "var(--sensa-ar-muted)"
+  ha-color-on-neutral-normal:  "var(--sensa-ar-text)"
+  ha-color-on-neutral-loud:    "var(--sensa-ar-text)"
+  ha-color-on-primary-quiet:   "var(--sensa-ar-primary-2)"
+  ha-color-on-primary-normal:  "var(--sensa-ar-primary-2)"
+  ha-color-on-primary-loud:    "#ffffff"
+
+  # ---- Legacy MDC text fields (older HA widgets, kept for compat) --
+  mdc-text-field-fill-color:                      "var(--sensa-ar-field)"
+  mdc-text-field-disabled-fill-color:             "var(--sensa-ar-page-2)"
+  mdc-text-field-ink-color:                       "var(--sensa-ar-text)"
+  mdc-text-field-label-ink-color:                 "var(--sensa-ar-muted)"
+  mdc-text-field-disabled-ink-color:              "var(--sensa-ar-faint)"
+  mdc-text-field-disabled-line-color:             "var(--sensa-ar-line)"
+  mdc-text-field-idle-line-color:                 "var(--sensa-ar-line)"
+  mdc-text-field-hover-line-color:                "var(--sensa-ar-primary)"
+  mdc-text-field-error-line-color:                "var(--sensa-ar-fault)"
+  mdc-text-field-error-ink-color:                 "var(--sensa-ar-fault)"
+  mdc-text-field-error-label-ink-color:           "var(--sensa-ar-fault)"
+  mdc-text-field-outlined-idle-border-color:      "var(--sensa-ar-line)"
+  mdc-text-field-outlined-hover-border-color:     "var(--sensa-ar-primary)"
+  mdc-text-field-outlined-disabled-border-color:  "var(--sensa-ar-line)"
+
+  # ---- MDC select / dropdowns --------------------------------------
+  mdc-select-fill-color:                       "var(--sensa-ar-field)"
+  mdc-select-disabled-fill-color:              "var(--sensa-ar-page-2)"
+  mdc-select-ink-color:                        "var(--sensa-ar-text)"
+  mdc-select-label-ink-color:                  "var(--sensa-ar-muted)"
+  mdc-select-disabled-ink-color:               "var(--sensa-ar-faint)"
+  mdc-select-idle-line-color:                  "var(--sensa-ar-line)"
+  mdc-select-hover-line-color:                 "var(--sensa-ar-primary)"
+  mdc-select-dropdown-icon-color:              "var(--sensa-ar-muted)"
+  mdc-select-outlined-idle-border-color:       "var(--sensa-ar-line)"
+  mdc-select-outlined-hover-border-color:      "var(--sensa-ar-primary)"
+  mdc-select-outlined-disabled-border-color:   "var(--sensa-ar-line)"
+
+  # ---- MDC dialog + list (dropdown popups, modal headings) ---------
+  mdc-dialog-heading-ink-color:         "var(--sensa-ar-text)"
+  mdc-dialog-content-ink-color:         "var(--sensa-ar-text)"
+  mdc-dialog-content-background-color:  "var(--sensa-ar-card)"
+  mdc-dialog-scrim-color:               "rgba(16, 34, 46, 0.32)"
+  ha-dialog-surface-background:         "var(--sensa-ar-card)"
+  ha-dialog-scrim-background:           "rgba(16, 34, 46, 0.32)"
+  mdc-list-text-color:                  "var(--sensa-ar-text)"
+
+  # ---- MDC menu surface (dropdown popups inside dialogs) -----------
+  mdc-menu-surface-fill-color:  "var(--sensa-ar-card)"
+
+  # ---- MDC text-on-background defaults ----------------------------
+  # Many MDC components compute their default text colour from these
+  # rather than from the per-component *-ink-color vars above.
+  mdc-theme-text-primary-on-background:    "var(--sensa-ar-text)"
+  mdc-theme-text-secondary-on-background:  "var(--sensa-ar-muted)"
+  mdc-theme-text-disabled-on-background:   "var(--sensa-ar-faint)"
+  mdc-theme-text-hint-on-background:       "var(--sensa-ar-muted)"
+  mdc-theme-text-icon-on-background:       "var(--sensa-ar-muted)"
+
+  # ---- Status -------------------------------------------------------
+  warning-color:  "var(--sensa-ar-warn)"
+  error-color:    "var(--sensa-ar-fault)"
+  success-color:  "var(--sensa-ar-success)"
+  info-color:     "var(--sensa-ar-cool)"
+
+  # ---- Material Design Components ----------------------------------
+  mdc-theme-primary:      "var(--sensa-ar-primary)"
+  mdc-theme-secondary:    "var(--sensa-ar-primary)"
+  mdc-theme-background:   "var(--sensa-ar-page)"
+  mdc-theme-surface:      "var(--sensa-ar-card)"
+  mdc-theme-on-primary:   "#ffffff"
+  mdc-theme-on-secondary: "#ffffff"
+  mdc-theme-on-surface:   "var(--sensa-ar-text)"
+
+  # ---- Code blocks --------------------------------------------------
+  code-editor-background-color:    "var(--sensa-ar-field)"
+  markdown-code-background-color:  "var(--sensa-ar-page-2)"
+
+  # ---- Lovelace page background ------------------------------------
+  lovelace-background: "var(--sensa-ar-page)"

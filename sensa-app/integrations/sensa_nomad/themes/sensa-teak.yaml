@@ -1,0 +1,287 @@
+# Sensa Teak — Home Assistant theme bundled with Sensa Nomad.
+#
+# Warm dark browns with brass hardware, for interiors with wood
+# trim. The browns are desaturated enough to stay readable, and
+# brass does the job blue does elsewhere: it marks what is on and
+# what can be touched.
+#
+# Architecture rule: this theme MAY define internal `--sensa-tk-*`
+# palette vars for its own use, but every Sensa-generated dashboard
+# and webcard MUST reference HA-standard theme variables only
+# (--primary-color, --accent-color, --warning-color, --error-color,
+# --success-color, --info-color, --card-background-color, etc.).
+# Switching to this theme should style every Sensa surface without
+# any code changes.
+#
+# To add another theme, copy this file, rename the top-level key and
+# the internal palette block, and change only the palette values at
+# the top. Nothing below that block should need editing. The installer
+# (frontend.py's async_install_sensa_themes) and the picker
+# (theme_catalog.py's public_theme_names) both glob `sensa-*.yaml`,
+# so a new file needs no registration anywhere.
+
+Sensa Teak:
+  # ---- Internal palette (only used inside this theme) ---------------
+  sensa-tk-page:        "#14100c"   # body / page behind the cards
+  sensa-tk-page-2:      "#1d1812"   # sidebar variants, secondary surfaces
+  sensa-tk-page-3:      "#291f17"   # pressed / selected / track
+  sensa-tk-deep:        "#0c0907"   # the surface below the page
+  sensa-tk-card:        "#1d1812"   # cards, dialogs, menus
+  sensa-tk-field:       "#241c15"   # input fills
+  sensa-tk-line:        "rgba(255, 255, 255, 0.12)"
+  sensa-tk-line-loud:   "rgba(255, 255, 255, 0.24)"
+  sensa-tk-text:        "#f0e6d6"
+  sensa-tk-muted:       "#b9a88f"
+  sensa-tk-faint:       "#85755f"
+  sensa-tk-primary:     "#c9a227"   # the accent: controls, links, active state
+  sensa-tk-primary-2:   "#e3c15a"   # hover / pressed, and accent text
+  sensa-tk-amber:       "#d9913a"   # lights-on
+  sensa-tk-warn:        "#d9913a"   # caution
+  sensa-tk-heat:        "#cc5f2c"   # climate heating
+  sensa-tk-cool:        "#5c95a8"   # climate cooling, and information
+  sensa-tk-fault:       "#cd635b"   # something is wrong
+  sensa-tk-success:     "#6f9d54"
+
+  # ---- Primary identity --------------------------------------------
+  primary-color:        "var(--sensa-tk-primary)"
+  accent-color:         "var(--sensa-tk-primary)"
+  dark-primary-color:   "var(--sensa-tk-primary-2)"
+  light-primary-color:  "var(--sensa-tk-page-3)"
+
+  # ---- Surfaces -----------------------------------------------------
+  primary-background-color:        "var(--sensa-tk-page)"
+  secondary-background-color:      "var(--sensa-tk-page-2)"
+  card-background-color:           "var(--sensa-tk-card)"
+  ha-card-background:              "var(--sensa-tk-card)"
+  paper-card-background-color:     "var(--sensa-tk-card)"
+  paper-listbox-background-color:  "var(--sensa-tk-card)"
+  paper-dialog-background-color:   "var(--sensa-tk-card)"
+  paper-tooltip-background-color:  "var(--sensa-tk-page-3)"
+  scrollbar-thumb-color:           "var(--sensa-tk-page-3)"
+
+  # ---- Card chrome --------------------------------------------------
+  ha-card-border-radius:   "8px"
+  ha-card-border-color:    "var(--sensa-tk-line)"
+  ha-card-border-width:    "1px"
+  ha-card-box-shadow:      "0 8px 24px rgba(0, 0, 0, 0.45)"
+  ha-badge-border-radius:  "8px"
+
+  # ---- Text ---------------------------------------------------------
+  primary-text-color:     "var(--sensa-tk-text)"
+  secondary-text-color:   "var(--sensa-tk-muted)"
+  # The label painted ON a filled accent (sa-primary, sa-danger, the
+  # selection bar). NOT the body ink: that is `primary-text-color`, one
+  # letter-order away and the opposite colour. A dark theme's accents are
+  # LIGHT, so the label on them is dark, not the theme's own light text.
+  text-primary-color:     "#000000"
+  disabled-text-color:    "var(--sensa-tk-faint)"
+  # text-light-color is the text HA paints ON a primary-coloured fill
+  # (raised buttons, the selection bar); text-dark-color is the body
+  # ink. They are NOT "the light theme's" and "the dark theme's".
+  text-light-color:       "var(--sensa-tk-text)"
+  text-dark-color:        "#1a1305"
+
+  # ---- Dividers / borders ------------------------------------------
+  divider-color:  "var(--sensa-tk-line)"
+  outline-color:  "var(--sensa-tk-line)"
+
+  # ---- App header ---------------------------------------------------
+  app-header-background-color:       "var(--sensa-tk-card)"
+  app-header-text-color:             "var(--sensa-tk-text)"
+  app-header-edit-background-color:  "var(--sensa-tk-page-2)"
+  app-header-selection-bar-color:    "var(--sensa-tk-primary)"
+
+  # ---- Sidebar ------------------------------------------------------
+  sidebar-background-color:           "var(--sensa-tk-card)"
+  sidebar-text-color:                 "var(--sensa-tk-muted)"
+  sidebar-icon-color:                 "var(--sensa-tk-muted)"
+  sidebar-selected-text-color:        "var(--sensa-tk-primary-2)"
+  sidebar-selected-icon-color:        "var(--sensa-tk-primary)"
+  sidebar-selected-background-color:  "var(--sensa-tk-page-2)"
+
+  # ---- State icons --------------------------------------------------
+  paper-item-icon-color:         "var(--sensa-tk-muted)"
+  paper-item-icon-active-color:  "var(--sensa-tk-primary)"
+  state-icon-color:              "var(--sensa-tk-muted)"
+  state-icon-active-color:       "var(--sensa-tk-primary)"
+
+  # ---- Domain state colours ----------------------------------------
+  state-active-color:                "var(--sensa-tk-primary)"
+  state-inactive-color:              "var(--sensa-tk-faint)"
+  state-binary_sensor-active-color:  "var(--sensa-tk-primary)"
+  state-light-active-color:          "var(--sensa-tk-amber)"
+  state-switch-active-color:         "var(--sensa-tk-primary)"
+  state-climate-heat-color:          "var(--sensa-tk-heat)"
+  state-climate-cool-color:          "var(--sensa-tk-cool)"
+
+  # ---- Switch / toggle ---------------------------------------------
+  switch-checked-color:           "var(--sensa-tk-primary)"
+  switch-checked-button-color:    "var(--sensa-tk-primary)"
+  switch-checked-track-color:     "rgba(201, 162, 39, 0.45)"
+  switch-unchecked-button-color:  "#c9cdd6"
+  switch-unchecked-track-color:   "var(--sensa-tk-line-loud)"
+
+  # ---- Slider -------------------------------------------------------
+  paper-slider-knob-color:         "var(--sensa-tk-primary)"
+  paper-slider-knob-start-color:   "var(--sensa-tk-primary)"
+  paper-slider-pin-color:          "var(--sensa-tk-primary)"
+  paper-slider-active-color:       "var(--sensa-tk-primary)"
+  paper-slider-secondary-color:    "color-mix(in srgb, var(--sensa-tk-primary) 40%, transparent)"
+  paper-slider-container-color:    "var(--sensa-tk-page-3)"
+
+  # ---- Legacy paper-input vars (older form widgets) ----------------
+  input-background-color:    "var(--sensa-tk-field)"
+  input-fill-color:          "var(--sensa-tk-field)"
+  input-ink-color:           "var(--sensa-tk-text)"
+  input-label-ink-color:     "var(--sensa-tk-muted)"
+  input-idle-line-color:     "var(--sensa-tk-line)"
+  input-hover-line-color:    "var(--sensa-tk-primary)"
+  input-disabled-ink-color:  "var(--sensa-tk-faint)"
+
+  # ---- HA design tokens (THIS is what modern HA actually reads) ----
+  # Current HA frontend (config flow, profile prefs, dialogs, helpers)
+  # uses webawesome `wa-input` / `wa-select` components styled via the
+  # `--ha-color-*` design-token system, NOT the legacy MDC vars below.
+  # The wa-input mixin reads `--ha-color-form-background` directly, so
+  # without these overrides HA's stock light defaults win and inputs
+  # render as near-white boxes however dark the card background is.
+  # Reference: home-assistant/frontend src/resources/theme/color/semantic.globals.ts
+
+  # Forms — input field fills (text, password, number, select)
+  ha-color-form-background:           "var(--sensa-tk-field)"
+  ha-color-form-background-hover:     "var(--sensa-tk-page-3)"
+  ha-color-form-background-disabled:  "var(--sensa-tk-page-2)"
+
+  # Text on the default surface
+  ha-color-text-primary:    "var(--sensa-tk-text)"
+  ha-color-text-secondary:  "var(--sensa-tk-muted)"
+  ha-color-text-disabled:   "var(--sensa-tk-faint)"
+  ha-color-text-link:       "var(--sensa-tk-primary-2)"
+
+  # Page surfaces (cards, dialogs, sidebar variants). "lower" is the
+  # surface furthest from the reader, which on a dark theme is the
+  # darkest and on a light theme is the deepest tint.
+  ha-color-surface-default:     "var(--sensa-tk-card)"
+  ha-color-surface-low:         "var(--sensa-tk-page)"
+  ha-color-surface-lower:       "var(--sensa-tk-deep)"
+  ha-color-on-surface-default:  "var(--sensa-tk-text)"
+
+  # Neutral borders
+  ha-color-border-neutral-quiet:   "var(--sensa-tk-line)"
+  ha-color-border-neutral-normal:  "var(--sensa-tk-line-loud)"
+  ha-color-border-neutral-loud:    "rgba(255, 255, 255, 0.40)"
+
+  # Status fills (alerts, validation states, badges)
+  ha-color-fill-danger-loud-resting:   "var(--sensa-tk-fault)"
+  ha-color-fill-warning-loud-resting:  "var(--sensa-tk-warn)"
+  ha-color-fill-success-loud-resting:  "var(--sensa-tk-success)"
+  ha-color-on-danger-quiet:            "var(--sensa-tk-fault)"
+  ha-color-on-warning-quiet:           "var(--sensa-tk-warn)"
+  ha-color-on-success-quiet:           "var(--sensa-tk-success)"
+
+  # Neutral fills — dropdown item hover, chips, neutral buttons.
+  # wa-dropdown-item:hover reads --wa-color-neutral-fill-normal which
+  # bridges to --ha-color-fill-neutral-normal-resting in wa.globals.ts.
+  # The alpha is light over a dark surface over the surface; copying the other
+  # direction's values in yields an invisible dropdown hover.
+  ha-color-fill-neutral-quiet-resting:   "rgba(255, 255, 255, 0.04)"
+  ha-color-fill-neutral-quiet-hover:     "rgba(255, 255, 255, 0.08)"
+  ha-color-fill-neutral-quiet-active:    "rgba(255, 255, 255, 0.04)"
+  ha-color-fill-neutral-normal-resting:  "rgba(255, 255, 255, 0.08)"
+  ha-color-fill-neutral-normal-hover:    "rgba(255, 255, 255, 0.12)"
+  ha-color-fill-neutral-normal-active:   "rgba(255, 255, 255, 0.08)"
+  ha-color-fill-neutral-loud-resting:    "rgba(255, 255, 255, 0.20)"
+  ha-color-fill-neutral-loud-hover:      "rgba(255, 255, 255, 0.28)"
+  ha-color-fill-neutral-loud-active:     "rgba(255, 255, 255, 0.20)"
+
+  # Primary fills — selected dropdown item, primary-tinted buttons.
+  # ha-dropdown-item[selected] reads --ha-color-fill-primary-quiet-
+  # resting directly. A faint accent wash, so the current selection
+  # reads without turning the row into a solid block of colour.
+  ha-color-fill-primary-quiet-resting:   "rgba(201, 162, 39, 0.14)"
+  ha-color-fill-primary-quiet-hover:     "rgba(201, 162, 39, 0.22)"
+  ha-color-fill-primary-quiet-active:    "rgba(201, 162, 39, 0.14)"
+  ha-color-fill-primary-normal-resting:  "rgba(201, 162, 39, 0.26)"
+  ha-color-fill-primary-normal-hover:    "rgba(201, 162, 39, 0.34)"
+  ha-color-fill-primary-normal-active:   "rgba(201, 162, 39, 0.26)"
+
+  # Text colours on those fills. The `-loud` fills are solid, so text
+  # on a loud primary fill is the on-accent ink, not the body ink.
+  ha-color-on-neutral-quiet:   "var(--sensa-tk-muted)"
+  ha-color-on-neutral-normal:  "var(--sensa-tk-text)"
+  ha-color-on-neutral-loud:    "var(--sensa-tk-text)"
+  ha-color-on-primary-quiet:   "var(--sensa-tk-primary-2)"
+  ha-color-on-primary-normal:  "var(--sensa-tk-primary-2)"
+  ha-color-on-primary-loud:    "#1a1305"
+
+  # ---- Legacy MDC text fields (older HA widgets, kept for compat) --
+  mdc-text-field-fill-color:                      "var(--sensa-tk-field)"
+  mdc-text-field-disabled-fill-color:             "var(--sensa-tk-page-2)"
+  mdc-text-field-ink-color:                       "var(--sensa-tk-text)"
+  mdc-text-field-label-ink-color:                 "var(--sensa-tk-muted)"
+  mdc-text-field-disabled-ink-color:              "var(--sensa-tk-faint)"
+  mdc-text-field-disabled-line-color:             "var(--sensa-tk-line)"
+  mdc-text-field-idle-line-color:                 "var(--sensa-tk-line)"
+  mdc-text-field-hover-line-color:                "var(--sensa-tk-primary)"
+  mdc-text-field-error-line-color:                "var(--sensa-tk-fault)"
+  mdc-text-field-error-ink-color:                 "var(--sensa-tk-fault)"
+  mdc-text-field-error-label-ink-color:           "var(--sensa-tk-fault)"
+  mdc-text-field-outlined-idle-border-color:      "var(--sensa-tk-line)"
+  mdc-text-field-outlined-hover-border-color:     "var(--sensa-tk-primary)"
+  mdc-text-field-outlined-disabled-border-color:  "var(--sensa-tk-line)"
+
+  # ---- MDC select / dropdowns --------------------------------------
+  mdc-select-fill-color:                       "var(--sensa-tk-field)"
+  mdc-select-disabled-fill-color:              "var(--sensa-tk-page-2)"
+  mdc-select-ink-color:                        "var(--sensa-tk-text)"
+  mdc-select-label-ink-color:                  "var(--sensa-tk-muted)"
+  mdc-select-disabled-ink-color:               "var(--sensa-tk-faint)"
+  mdc-select-idle-line-color:                  "var(--sensa-tk-line)"
+  mdc-select-hover-line-color:                 "var(--sensa-tk-primary)"
+  mdc-select-dropdown-icon-color:              "var(--sensa-tk-muted)"
+  mdc-select-outlined-idle-border-color:       "var(--sensa-tk-line)"
+  mdc-select-outlined-hover-border-color:      "var(--sensa-tk-primary)"
+  mdc-select-outlined-disabled-border-color:   "var(--sensa-tk-line)"
+
+  # ---- MDC dialog + list (dropdown popups, modal headings) ---------
+  mdc-dialog-heading-ink-color:         "var(--sensa-tk-text)"
+  mdc-dialog-content-ink-color:         "var(--sensa-tk-text)"
+  mdc-dialog-content-background-color:  "var(--sensa-tk-card)"
+  mdc-dialog-scrim-color:               "rgba(0, 0, 0, 0.60)"
+  ha-dialog-surface-background:         "var(--sensa-tk-card)"
+  ha-dialog-scrim-background:           "rgba(0, 0, 0, 0.60)"
+  mdc-list-text-color:                  "var(--sensa-tk-text)"
+
+  # ---- MDC menu surface (dropdown popups inside dialogs) -----------
+  mdc-menu-surface-fill-color:  "var(--sensa-tk-card)"
+
+  # ---- MDC text-on-background defaults ----------------------------
+  # Many MDC components compute their default text colour from these
+  # rather than from the per-component *-ink-color vars above.
+  mdc-theme-text-primary-on-background:    "var(--sensa-tk-text)"
+  mdc-theme-text-secondary-on-background:  "var(--sensa-tk-muted)"
+  mdc-theme-text-disabled-on-background:   "var(--sensa-tk-faint)"
+  mdc-theme-text-hint-on-background:       "var(--sensa-tk-muted)"
+  mdc-theme-text-icon-on-background:       "var(--sensa-tk-muted)"
+
+  # ---- Status -------------------------------------------------------
+  warning-color:  "var(--sensa-tk-warn)"
+  error-color:    "var(--sensa-tk-fault)"
+  success-color:  "var(--sensa-tk-success)"
+  info-color:     "var(--sensa-tk-cool)"
+
+  # ---- Material Design Components ----------------------------------
+  mdc-theme-primary:      "var(--sensa-tk-primary)"
+  mdc-theme-secondary:    "var(--sensa-tk-primary)"
+  mdc-theme-background:   "var(--sensa-tk-page)"
+  mdc-theme-surface:      "var(--sensa-tk-card)"
+  mdc-theme-on-primary:   "#1a1305"
+  mdc-theme-on-secondary: "#1a1305"
+  mdc-theme-on-surface:   "var(--sensa-tk-text)"
+
+  # ---- Code blocks --------------------------------------------------
+  code-editor-background-color:    "var(--sensa-tk-field)"
+  markdown-code-background-color:  "var(--sensa-tk-page-2)"
+
+  # ---- Lovelace page background ------------------------------------
+  lovelace-background: "var(--sensa-tk-page)"

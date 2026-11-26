@@ -1,0 +1,23 @@
+{
+    "domain": "sensa_nomad",
+    "name": "Sensa Nomad",
+    "version": "1.9.29",
+    "documentation": "https://docs.sensa.systems",
+    "issue_tracker": "https://docs.sensa.systems",
+    "codeowners": [
+        "@Sensa-Systems"
+    ],
+    "config_flow": true,
+    "integration_type": "hub",
+    "iot_class": "local_polling",
+    "after_dependencies": [
+        "http",
+        "bluetooth",
+        "wake_on_lan",
+        "network"
+    ],
+    "requirements": ["grpcio>=1.59.0", "aiobmsble>=0.20.0", "aiomqtt>=2.0.0", "asyncssh>=2.14.0"],
+    "loggers": [
+        "custom_components.sensa_nomad"
+    ]
+}

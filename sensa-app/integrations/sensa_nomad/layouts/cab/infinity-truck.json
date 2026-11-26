@@ -1,0 +1,24 @@
+{
+  "id": "infinity-truck",
+  "surface": "cab",
+  "name": "Infinity Truck",
+  "dealer": "infinity",
+  "summary": "Vehicle telemetry and the customer's Cab Home cards stacked on the left, the navigation map filling the right with its source, theme and driver pills.",
+  "shell": "cab-split",
+  "columns": "35fr 65fr",
+  "slots": {
+    "column": [
+      "cab_vehicle_telemetry",
+      "cab_placed_cards"
+    ],
+    "map": {
+      "builder": "cab_nav_map",
+      "args": {
+        "min_height": "360px",
+        "source_pills": true,
+        "theme_pill": true,
+        "people_bar": true
+      }
+    }
+  }
+}

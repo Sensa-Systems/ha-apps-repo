@@ -1,0 +1,16 @@
+{
+  "_comment": "Zigbee device firmware Sensa has approved. Each entry is a Zigbee2MQTT OTA index entry (copied from https://github.com/Koenkk/zigbee-OTA index.json; the url plus sha512 pin the exact file) with one Sensa key added: sensa_model, the Zigbee2MQTT definition model the entry is offered to. Zigbee2MQTT is only ever asked against this list, so a device with no entry here is never offered an update. See docs/system-design/firmware-updates.md section 1.",
+  "firmware": [
+    {
+      "sensa_model": "SNZB-01M",
+      "fileName": "snzb-01m_v1.1.0.ota",
+      "fileVersion": 4352,
+      "fileSize": 193632,
+      "url": "https://raw.githubusercontent.com/Koenkk/zigbee-OTA/master/images/Sonoff/snzb-01m_v1.1.0.ota",
+      "imageType": 2062,
+      "manufacturerCode": 4742,
+      "sha512": "7fcdc207b28979930d179f904fefac18ed1ddbd9c5a6098dfa49da5dff46c6f8b51bf09cee26634a31705ef0c1e821cb11a07b4604149423a86e45273f863127",
+      "otaHeaderString": "FIRMWARE"
+    }
+  ]
+}

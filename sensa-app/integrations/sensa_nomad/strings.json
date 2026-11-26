@@ -1,0 +1,68 @@
+{
+  "title": "Sensa Nomad",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Set up Sensa Nomad",
+        "description": "Enter your registration code (e.g. SENSA-A4B2-C7D9-E1F3), or leave it blank to start a 14-day trial. You'll need internet for this step only.",
+        "data": {
+          "redemption_code": "Registration code"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure Sensa Nomad",
+        "description": "Update your Sensa Nomad setup details and rescan devices.",
+        "data": {
+          "redemption_code": "Registration code"
+        }
+      },
+      "discovery_settings": {
+        "title": "Network Scan",
+        "description": "Choose the subnet to scan for devices. Other devices (routers, gateways, etc.) are configured after setup.",
+        "data": {
+          "scan_subnet": "Subnet to scan"
+        }
+      },
+      "confirm_devices": {
+        "title": "Discovered devices",
+        "description": "Select the devices that belong to your system.",
+        "data": {
+          "selected_devices": "Devices"
+        }
+      },
+      "register": {
+        "title": "Let's finish your setup",
+        "description": "{licence_announcement}\n\nSensa uses this info for support and product updates — nothing is shared with anyone else. Registration runs in the background; if the network's unreachable we'll retry automatically.\n\nUsing Sensa is subject to the Sensa Control Licence Terms: https://sensa.systems/legal/control-licence/",
+        "data": {
+          "customer_name": "Your name",
+          "contact_email": "Contact email"
+        }
+      }
+    },
+    "progress": {
+      "scan_network": "Scanning the network for devices. This may take a few seconds.",
+      "creating_dashboards": "Creating dashboards. Home Assistant will restart automatically once setup is complete.",
+      "reloading_config": "Reloading config",
+      "restarting": "Setup complete. Home Assistant is restarting to apply dashboard changes. This page will reload automatically."
+    },
+    "abort": {
+      "single_instance_allowed": "Only a single Sensa Nomad instance is supported.",
+      "reconfigure_successful": "Reconfiguration complete.",
+      "cannot_connect": "Failed to connect to the Sensa backend. Check that the add-on is running.",
+      "dashboard_create_failed": "Dashboard creation failed. Check the logs for details.",
+      "unknown": "An unexpected error occurred. Check the logs for details."
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the Sensa backend.",
+      "invalid_subnet": "Enter a valid subnet in CIDR format, for example 192.168.1.0/24.",
+      "unknown": "An unknown error occurred.",
+      "licence_invalid": "That registration code doesn't look right. Double-check and try again.",
+      "licence_slot_occupied": "This licence is already activated on different hardware. Contact Sensa support to reset the binding.",
+      "licence_rebind_limit": "This licence has been moved between devices too many times recently. Please contact Sensa support.",
+      "licence_unreachable": "We couldn't reach the Sensa licensing service. You need internet to register — check your connection and try again.",
+      "licence_unavailable": "Licence service returned an unexpected response — try again in a few moments.",
+      "trial_exhausted": "This hardware has already used its free trial. Enter a purchased registration code to continue.",
+      "registration_required": "Please enter your name and a valid email address."
+    }
+  }
+}

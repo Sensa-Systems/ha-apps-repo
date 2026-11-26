@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "_comment": "Nomad managed: single network. Everything in the van on one network, no VLANs. The secure layout is network_profile.json; design record in docs/system-design/network-design.md.",
+
+  "segments": [
+    {
+      "key": "data",
+      "label": "Van network",
+      "icon": "mdi:lan",
+      "zone": "data",
+      "vlan_id": null,
+      "tagging": "untagged",
+      "subnet": "192.168.1.0/24",
+      "router_ip": "192.168.1.1",
+      "managed": false,
+      "_managed_comment": "false means the provisioner must never create, renumber or re-bridge this, as in the secure layout: the Sensa box lives here and the router is reached over it.",
+      "dhcp": null,
+      "purpose": "Everything in the van",
+      "customer": ["Everything", "The Sensa box, screens, phones, smart devices and cameras"]
+    }
+  ],
+
+  "switch": {
+    "_comment": "Same port map as the secure layout. No segment has lan_ports, so no switch VLAN is written.",
+    "device": "switch0",
+    "cpu_port": 0,
+    "lan_ports": { "1": 1, "2": 2, "3": 3, "4": 4 },
+    "reserved_vlans": [1, 2]
+  },
+
+  "forwarding": {
+    "data": ["wan"]
+  },
+
+  "input_policy": {
+    "data": "accept"
+  },
+
+  "input_exceptions": [],
+
+  "zone_exceptions": [],
+
+  "ssids": [
+    {
+      "suffix": "2G",
+      "segment": "data",
+      "bands": ["2g"],
+      "password_param": "wifi_password",
+      "client_isolation": false
+    },
+    {
+      "suffix": "5G",
+      "segment": "data",
+      "bands": ["5g"],
+      "password_param": "wifi_password",
+      "client_isolation": false,
+      "skip_if_no_radio": true
+    }
+  ],
+
+  "ssid_template": "{identity}_{suffix}",
+
+  "starlink": {
+    "_comment": "Same as the secure layout.",
+    "modes": ["none", "wan_ethernet", "wifi_client"],
+    "label": "Starlink",
+    "icon": "mdi:satellite-variant",
+    "dish_management_ip": "192.168.100.1",
+    "dish_management_subnet": "192.168.100.0/24",
+    "dish_grpc_port": 9200,
+    "expected_wan_subnet": "192.168.3.0/24",
+    "expected_wan_gateway": "192.168.3.1",
+    "refuse_on_wan_subnet_overlap": true
+  },
+
+  "scan_subnet": {
+    "value": "192.168.1.0/24"
+  }
+}

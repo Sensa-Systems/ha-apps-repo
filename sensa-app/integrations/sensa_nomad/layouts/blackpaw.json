@@ -1,0 +1,16 @@
+{
+  "id": "blackpaw",
+  "surface": "hab",
+  "name": "BlackPaw",
+  "dealer": "blackpaw",
+  "summary": "Power Central arrangement with BlackPaw branding: battery and water dials left, power-flow hero with the inverter controls panel and 24h solar chart centre, mode bar beneath. Started as a copy of Power Central, ready to diverge.",
+  "shell": "custom:sensa-view-home",
+  "slots": {
+    "left": "home_left_dials",
+    "modes": { "builder": "home_modes_bar", "args": { "single_row": true } },
+    "center": "home_center_power_flow",
+    "center_controls": "home_controls_panel",
+    "center_below": "home_solar_graph"
+  },
+  "placement": "hab"
+}

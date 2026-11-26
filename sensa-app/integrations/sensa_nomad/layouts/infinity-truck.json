@@ -1,0 +1,15 @@
+{
+  "id": "infinity-truck",
+  "surface": "hab",
+  "name": "Infinity Truck",
+  "dealer": "infinity",
+  "summary": "Power Central arrangement without the inverter controls panel: battery and water dials left, power-flow hero and 24h solar chart centre, mode bar beneath.",
+  "shell": "custom:sensa-view-home",
+  "slots": {
+    "left": "home_left_dials",
+    "modes": { "builder": "home_modes_bar", "args": { "single_row": true } },
+    "center": "home_center_power_flow",
+    "center_below": "home_solar_graph"
+  },
+  "placement": "hab"
+}
