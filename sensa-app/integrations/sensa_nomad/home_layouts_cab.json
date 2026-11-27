@@ -1,7 +1,0 @@
-[
-  { "id": "level", "name": "Default (Landscape)", "tiers": ["lite", "plus", "vision"] },
-  { "id": "default-portrait", "name": "Default (Portrait)", "tiers": ["lite", "plus", "vision"] },
-  { "id": "infinity-truck", "name": "Infinity Truck", "dealer": "infinity" },
-  { "id": "noggin-mog", "name": "Noggin The Mog", "dealer": "noggin" },
-  { "id": "blackpaw", "name": "BlackPaw", "dealer": "blackpaw" }
-]

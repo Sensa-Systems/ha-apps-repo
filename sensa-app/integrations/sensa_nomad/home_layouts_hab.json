@@ -1,6 +1,0 @@
-[
-  { "id": "standard", "name": "Power Central (Landscape)", "tiers": ["lite", "plus", "vision"] },
-  { "id": "infinity-truck", "name": "Infinity Truck", "dealer": "infinity" },
-  { "id": "noggin-mog", "name": "Noggin The Mog", "dealer": "noggin" },
-  { "id": "blackpaw", "name": "BlackPaw", "dealer": "blackpaw" }
-]
